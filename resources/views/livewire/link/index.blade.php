@@ -91,7 +91,7 @@
                                         </i>
                                         View
                                     </a>
-                                    <a class="link-light-blue" href="{{ $entry['url'] }}" download>
+                                    <a class="link-light-blue" href="{{ $entry['original_url'] }}" download>
                                         <i class="far fa-file">
                                         </i>
                                         download
