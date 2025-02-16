@@ -50,6 +50,20 @@
 
                 <x-footer />
             </div>
+            <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+            <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+            @livewireScripts
+                @yield('scripts')
+                @stack('scripts')
+                <script>
+                    function closeAlert(event){
+                let element = event.target;
+                while(element.nodeName !== "BUTTON"){
+                  element = element.parentNode;
+                }
+                element.parentNode.parentNode.removeChild(element.parentNode);
+              }
+                </script>
 </body>
 
 </html>

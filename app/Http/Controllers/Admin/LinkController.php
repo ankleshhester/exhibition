@@ -73,13 +73,13 @@ class LinkController extends Controller
         // Store visitor ID in session
         session()->put('visitor_id', $visitorId);
 
-        // // Track download
-        // LinkStatistic::create([
-        //     'link_id' => $media->model_id,
-        //     'action' => 'download',
-        //     'ip_address' => request()->ip(),
-        //     'visitor_id' => $visitorId,
-        // ]);
+        // Track download
+        LinkStatistic::create([
+            'link_id' => $media->model_id,
+            'action' => 'download',
+            'ip_address' => request()->ip(),
+            'visitor_id' => $visitorId,
+        ]);
 
         // Force file download
         return response()->download($media->getPath(), $media->file_name);

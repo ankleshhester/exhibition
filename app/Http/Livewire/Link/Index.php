@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Link;
 use App\Http\Livewire\WithConfirmation;
 use App\Http\Livewire\WithSorting;
 use App\Models\Link;
+use App\Models\LinkStatistic;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Gate;
 use Livewire\Component;
@@ -63,6 +64,16 @@ class Index extends Component
         $this->perPage           = 100;
         $this->paginationOptions = config('project.pagination.options');
         $this->orderable         = (new Link())->orderable;
+    }
+
+    public function trackView(Link $link)
+    {
+        LinkStatistic::create([
+            'link_id' => $link->id,
+            'action' => 'view',
+            'ip_address' => request()->ip(),
+            'visitor_id' => auth()->id() ?? null,
+        ]);
     }
 
     public function render()
