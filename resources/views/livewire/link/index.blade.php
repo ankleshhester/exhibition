@@ -86,16 +86,11 @@
                             </td> --}}
                             <td>
                                 @foreach($link->file as $key => $entry)
-                                    {{-- <a class="link-light-blue" href="{{ $entry['url'] }}">
-                                        <i class="far fa-file">
-                                        </i>
-                                        View
-                                    </a> --}}
-                                    {{dd($entry['url'])}}
+                                    
                                     <a href="{{ $entry['url'] }}" wire:click="trackView({{ $link->id }})">
                                         <i class="far fa-eye"></i> View
                                     </a>
-                                    {{-- {{dd($entry)}} --}}
+
                                     <a class="link-light-blue" href="{{ route('links.download', $entry['id']) }}">
                                         <i class="far fa-file"></i> Download
                                     </a>
