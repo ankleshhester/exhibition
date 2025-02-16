@@ -105,11 +105,7 @@
                             @endcan
                             <td>
                                 <div class="flex justify-end">
-                                    @can('link_show')
-                                        <a class="btn btn-sm btn-info mr-2" href="{{ route('admin.links.show', $link) }}">
-                                            {{ trans('global.view') }}
-                                        </a>
-                                    @endcan
+                                    
                                     @can('link_edit')
                                         <a class="btn btn-sm btn-success mr-2" href="{{ route('admin.links.edit', $link) }}">
                                             {{ trans('global.edit') }}
