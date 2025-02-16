@@ -26,7 +26,7 @@
             {{ trans('global.save') }}
         </button>
         <a href="{{ route('admin.link-categories.index') }}" class="btn btn-secondary">
-            {{ trans('global.cancel') }}
+            Cancel
         </a>
     </div>
 </form>
