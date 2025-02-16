@@ -91,10 +91,9 @@
                                         </i>
                                         View
                                     </a>
-                                    <a class="link-light-blue" href="{{ $entry['original_url'] }}" download>
-                                        <i class="far fa-file">
-                                        </i>
-                                        Download
+                                    {{-- {{dd($entry)}} --}}
+                                    <a class="link-light-blue" href="{{ route('links.download', $entry['id']) }}">
+                                        <i class="far fa-file"></i> Download
                                     </a>
                                 @endforeach
                             </td>

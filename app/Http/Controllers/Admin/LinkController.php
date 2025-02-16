@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Link;
-use Gate;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use App\Models\LinkStatistic;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\Response;
 
 class LinkController extends Controller
 {
@@ -58,4 +59,29 @@ class LinkController extends Controller
 
         return response()->json(compact('media'), Response::HTTP_CREATED);
     }
+
+    public function download($mediaId)
+    {
+        $media = Media::findOrFail($mediaId); // Retrieve media from Spatie's table
+
+        abort_if(!$media || !Storage::disk($media->disk)->exists($media->getPath()), Response::HTTP_NOT_FOUND, 'File not found');
+
+        // Generate visitor ID if guest
+        $visitorId = auth()->id() ?? session()->get('visitor_id', uniqid());
+
+        // Store visitor ID in session
+        session()->put('visitor_id', $visitorId);
+
+        // // Track download
+        // LinkStatistic::create([
+        //     'link_id' => $media->model_id,
+        //     'action' => 'download',
+        //     'ip_address' => request()->ip(),
+        //     'visitor_id' => $visitorId,
+        // ]);
+
+        // Force file download
+        return response()->download($media->getPath(), $media->file_name);
+    }
+
 }

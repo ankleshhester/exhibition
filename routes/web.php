@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\VisitorLogin;
 use App\Http\Livewire\VisitorDashboard;
 use App\Http\Controllers\VisitorAuthController;
+use App\Http\Controllers\FileDownloadController;
 
 Route::post('/visitor/login', [VisitorAuthController::class, 'login'])->name('visitor.login');
 // Route::get('/visitor/dashboard', function () {
@@ -26,7 +27,8 @@ Route::post('/visitor/login', [VisitorAuthController::class, 'login'])->name('vi
 
 Route::get('/visitor/login', VisitorLogin::class)->name('visitor.login');
 Route::get('/visitor/dashboard', VisitorDashboard::class)->middleware('visitor.auth')->name('visitor.dashboard');
-// Route::get('/force-download', [VisitorDashboard::class, 'download'])->middleware('visitor.auth')->name('force.download');
+Route::get('/download/{media}', [LinkController::class, 'download'])->name('links.download');
+
 Route::get('/visitor/links', function () {
     return view('links'); // Your existing Links Page
 })->middleware('visitor.auth')->name('visitor.links');
