@@ -27,7 +27,7 @@ Route::post('/visitor/login', [VisitorAuthController::class, 'login'])->name('vi
 
 Route::get('/visitor/login', VisitorLogin::class)->name('visitor.login');
 Route::get('/visitor/dashboard', VisitorDashboard::class)->middleware('visitor.auth')->name('visitor.dashboard');
-Route::get('/visitor/download/{media}', [LinkController::class, 'download'])->name('links.download');
+// Route::get('/visitor/download/{media}', [LinkController::class, 'download'])->name('links.download');
 
 Route::get('/visitor/links', function () {
     return view('links'); // Your existing Links Page

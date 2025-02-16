@@ -10,6 +10,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Gate;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Index extends Component
 {
@@ -64,6 +65,28 @@ class Index extends Component
         $this->perPage           = 100;
         $this->paginationOptions = config('project.pagination.options');
         $this->orderable         = (new Link())->orderable;
+    }
+
+    public function download($mediaId)
+    {
+        $media = Media::findOrFail($mediaId); // Retrieve media from Spatie's table
+
+        abort_if(!$media, Response::HTTP_NOT_FOUND, 'File not found');
+
+        // Generate visitor ID if guest
+        $visitorId =  session()->get('visitor_id');
+        $visitorId = auth()->id() ?? session()->get('visitor_id', uniqid());
+
+        // Track download
+        LinkStatistic::create([
+            'link_id' => $media->model_id,
+            'action' => 'download',
+            'ip_address' => request()->ip(),
+            'visitor_id' => $visitorId,
+        ]);
+
+        // Force file download
+        return response()->download($media->getPath(), $media->file_name);
     }
 
     public function trackView(Link $link)

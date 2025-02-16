@@ -91,7 +91,7 @@
                                         <i class="far fa-eye"></i> View
                                     </a>
 
-                                    <a class="link-light-blue" href="{{ route('links.download', $entry['id']) }}">
+                                    <a class="link-light-blue" href="#" wire:click="download({{ $link->id }})>
                                         <i class="far fa-file"></i> Download
                                     </a>
                                 @endforeach
