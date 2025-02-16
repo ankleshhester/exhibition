@@ -75,8 +75,6 @@ class Index extends Component
 
         // Generate visitor ID if guest
         $visitorId =  session()->get('visitor_id');
-        $visitorId = auth()->id() ?? session()->get('visitor_id', uniqid());
-
         // Track download
         LinkStatistic::create([
             'link_id' => $media->model_id,
@@ -91,11 +89,13 @@ class Index extends Component
 
     public function trackView(Link $link)
     {
+        // Generate visitor ID if guest
+        $visitorId =  session()->get('visitor_id');
         LinkStatistic::create([
             'link_id' => $link->id,
             'action' => 'view',
             'ip_address' => request()->ip(),
-            'visitor_id' => auth()->id() ?? null,
+            'visitor_id' => $visitorId,
         ]);
     }
 
