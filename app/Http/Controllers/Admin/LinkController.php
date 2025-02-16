@@ -62,9 +62,10 @@ class LinkController extends Controller
 
     public function download($mediaId)
     {
+        
         $media = Media::findOrFail($mediaId); // Retrieve media from Spatie's table
 
-        abort_if(!$media || !Storage::disk($media->disk)->exists($media->getPath()), Response::HTTP_NOT_FOUND, 'File not found');
+        abort_if(!$media, Response::HTTP_NOT_FOUND, 'File not found');
 
         // Generate visitor ID if guest
         $visitorId = auth()->id() ?? session()->get('visitor_id', uniqid());
