@@ -8,6 +8,8 @@ use App\Models\LinkStatistic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Gate;
+
 
 class LinkController extends Controller
 {
