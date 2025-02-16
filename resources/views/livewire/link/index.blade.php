@@ -94,7 +94,7 @@
                                     <a class="link-light-blue" href="{{ $entry['original_url'] }}" download>
                                         <i class="far fa-file">
                                         </i>
-                                        download
+                                        Download
                                     </a>
                                 @endforeach
                             </td>
