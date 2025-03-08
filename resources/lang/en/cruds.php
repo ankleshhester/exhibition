@@ -219,5 +219,27 @@ return [
             'deleted_at_helper' => ' ',
         ],
     ],
+    'linkStatistic' => [
+        'title'          => 'Link Statistic',
+        'title_singular' => 'Link Statistic',
+        'fields'         => [
+            'id'                => 'ID',
+            'id_helper'         => ' ',
+            'link'              => 'Link',
+            'link_helper'       => ' ',
+            'ip_address'        => 'Ip Address',
+            'ip_address_helper' => ' ',
+            'visitor'           => 'Visitor',
+            'visitor_helper'    => ' ',
+            'created_at'        => 'Created at',
+            'created_at_helper' => ' ',
+            'updated_at'        => 'Updated at',
+            'updated_at_helper' => ' ',
+            'deleted_at'        => 'Deleted at',
+            'deleted_at_helper' => ' ',
+            'action'            => 'Action',
+            'action_helper'     => ' ',
+        ],
+    ],
 
 ];

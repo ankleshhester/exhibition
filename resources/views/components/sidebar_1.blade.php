@@ -54,15 +54,6 @@
                         </a>
                     </li>
                 @endcan
-                @can('link_statistic_access')
-                    <li class="items-center">
-                        <a class="{{ request()->is("admin/link-statistics*") ? "sidebar-nav-active" : "sidebar-nav" }}" href="{{ route("admin.link-statistics.index") }}">
-                            <i class="fa-fw c-sidebar-nav-icon fas fa-cogs">
-                            </i>
-                            {{ trans('cruds.linkStatistic.title') }}
-                        </a>
-                    </li>
-                @endcan
                 @can('exhibition_access')
                     <li class="items-center">
                         <a class="{{ request()->is("admin/exhibitions*") ? "sidebar-nav-active" : "sidebar-nav" }}" href="{{ route("admin.exhibitions.index") }}">

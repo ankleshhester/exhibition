@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserAlertController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\VisitorController;
+use App\Http\Controllers\Admin\LinkStatisticController;
 use App\Http\Controllers\Auth\ApprovalController;
 use App\Http\Controllers\Auth\UserProfileController;
 use Illuminate\Support\Facades\Auth;
@@ -75,6 +76,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
 
     // Visitor
     Route::resource('visitors', VisitorController::class, ['except' => ['store', 'update', 'destroy']]);
+    // Link Statistic
+    Route::resource('link-statistics', LinkStatisticController::class, ['except' => ['store', 'update', 'destroy']]);
 });
 
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'middleware' => ['auth']], function () {
