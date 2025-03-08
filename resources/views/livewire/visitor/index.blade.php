@@ -49,6 +49,10 @@
                             @include('components.table.sort', ['field' => 'name'])
                         </th>
                         <th>
+                            Company Name
+                            @include('components.table.sort', ['field' => 'company_name'])
+                        </th>
+                        <th>
                             {{ trans('cruds.visitor.fields.email') }}
                             @include('components.table.sort', ['field' => 'email'])
                         </th>
@@ -56,14 +60,14 @@
                             {{ trans('cruds.visitor.fields.mobile') }}
                             @include('components.table.sort', ['field' => 'mobile'])
                         </th>
-                        <th>
+                        {{-- <th>
                             {{ trans('cruds.visitor.fields.country') }}
                             @include('components.table.sort', ['field' => 'country.name'])
                         </th>
                         <th>
                             {{ trans('cruds.visitor.fields.exhibition') }}
                             @include('components.table.sort', ['field' => 'exhibition.name'])
-                        </th>
+                        </th> --}}
                         <th>
                         </th>
                     </tr>
@@ -81,6 +85,9 @@
                                 {{ $visitor->name }}
                             </td>
                             <td>
+                                {{ $visitor->company_name }}
+                            </td>
+                            <td>
                                 <a class="link-light-blue" href="mailto:{{ $visitor->email }}">
                                     <i class="far fa-envelope fa-fw">
                                     </i>
@@ -90,7 +97,7 @@
                             <td>
                                 {{ $visitor->mobile }}
                             </td>
-                            <td>
+                            {{-- <td>
                                 @if($visitor->country)
                                     <span class="badge badge-relationship">{{ $visitor->country->name ?? '' }}</span>
                                 @endif
@@ -99,10 +106,10 @@
                                 @if($visitor->exhibition)
                                     <span class="badge badge-relationship">{{ $visitor->exhibition->name ?? '' }}</span>
                                 @endif
-                            </td>
+                            </td> --}}
                             <td>
                                 <div class="flex justify-end">
-                                    @can('visitor_show')
+                                    {{-- @can('visitor_show')
                                         <a class="btn btn-sm btn-info mr-2" href="{{ route('admin.visitors.show', $visitor) }}">
                                             {{ trans('global.view') }}
                                         </a>
@@ -111,7 +118,7 @@
                                         <a class="btn btn-sm btn-success mr-2" href="{{ route('admin.visitors.edit', $visitor) }}">
                                             {{ trans('global.edit') }}
                                         </a>
-                                    @endcan
+                                    @endcan --}}
                                     @can('visitor_delete')
                                         <button class="btn btn-sm btn-rose mr-2" type="button" wire:click="confirm('delete', {{ $visitor->id }})" wire:loading.attr="disabled">
                                             {{ trans('global.delete') }}

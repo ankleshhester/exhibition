@@ -25,6 +25,7 @@ class Visitor extends Model
         'name',
         'email',
         'mobile',
+        'company_name',
         'country_id',
     ];
 
@@ -33,6 +34,7 @@ class Visitor extends Model
         'name',
         'email',
         'mobile',
+        'company_name',
         'country.name',
         'exhibition.name',
     ];
@@ -42,6 +44,7 @@ class Visitor extends Model
         'name',
         'email',
         'mobile',
+        'company_name',
         'country.name',
         'exhibition.name',
     ];

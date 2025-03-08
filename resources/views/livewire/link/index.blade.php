@@ -1,7 +1,7 @@
 <div>
     @can('link_show')
     <div class="card-controls sm:flex">
-        
+
         <div class="w-full sm:w-1/2">
             Per page:
             <select wire:model="perPage" class="form-select w-full sm:w-1/6">
@@ -27,10 +27,12 @@
             <input type="text" wire:model.debounce.300ms="search" class="w-full sm:w-1/3 inline-block" />
         </div>
     </div>
-    <div wire:loading.delay>
-        Loading...
-    </div>
+
     @endcan
+
+    <div wire:loading.delay>
+        <i class="fas fa-spinner fa-spin"></i> Loading...
+    </div>
 
     <div class="overflow-hidden">
         <div class="overflow-x-auto">
@@ -85,14 +87,16 @@
                                 {{ $link->url }}
                             </td> --}}
                             <td>
-                                @foreach($link->file as $key => $entry)
-                                    
-                                    <a href="{{ $entry['url'] }}" wire:click="trackView({{ $link->id }})">
-                                        <i class="far fa-eye"></i> View
-                                    </a>
-
-                                    <a class="link-light-blue" href="#" wire:click="download({{ $link->id }})>
+                                {{-- @foreach($link->file as $key => $entry)
+                                    <a class="link-light-blue" href="#" wire:click="download({{ $link->id }})">
                                         <i class="far fa-file"></i> Download
+                                    </a>
+                                @endforeach --}}
+                                @foreach($link->file as $key => $entry)
+                                    <a class="link-light-blue" href="#" wire:click="download({{ $entry['id']  }})">
+                                        <i class="far fa-file">
+                                        </i>
+                                        Download
                                     </a>
                                 @endforeach
                             </td>
@@ -105,7 +109,7 @@
                             @endcan
                             <td>
                                 <div class="flex justify-end">
-                                    
+
                                     @can('link_edit')
                                         <a class="btn btn-sm btn-success mr-2" href="{{ route('admin.links.edit', $link) }}">
                                             {{ trans('global.edit') }}
@@ -154,3 +158,4 @@
 })
     </script>
 @endpush
+

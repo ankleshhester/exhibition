@@ -16,7 +16,9 @@ class VisitorAuthController extends Controller
         ]);
 
         // Store visitor info in database and session
-        $visitor = Visitor::firstOrCreate(['email' => $request->email], ['name' => $request->name]);
+        $visitor = Visitor::firstOrCreate(
+            ['email' => $request->email],
+            ['name' => $request->name, 'company_name' => $request->company_name, 'mobile' => $request->mobile]);
 
         Session::put('visitor_id', $visitor->id);
         Session::put('visitor_name', $visitor->name);
