@@ -92,11 +92,7 @@
                                         <i class="far fa-file"></i> Download
                                     </a>
                                 @endforeach --}}
-                                @foreach($link->file as $key => $entry)
-                                    <a class="link-light-blue" href="#" wire:click.prevent="trackView({{ $entry['id']}})">
-                                        <i class="far fa-eye"></i> View File
-                                    </a>
-                                @endforeach
+
                                 @foreach($link->file as $key => $entry)
                                     <a class="link-light-blue" href="#" wire:click.prevent="download({{ $entry['id']  }})">
                                         <i class="far fa-file">
@@ -162,15 +158,5 @@
 @this[e.callback](...e.argv)
 })
     </script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        document.querySelectorAll('.link-light-blue').forEach(link => {
-            link.addEventListener('touchstart', function () {
-                this.click();
-            });
-        });
-    });
-</script>
 @endpush
 
