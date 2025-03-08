@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Gate;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Illuminate\Support\Facades\Storage;
 
 class Index extends Component
 {
@@ -87,16 +88,22 @@ class Index extends Component
         return response()->download($media->getPath(), $media->file_name);
     }
 
-    public function trackView(Link $link)
+    public function trackView($mediaId)
     {
+        $media = Media::find($mediaId);
+
+        abort_if(!$media, Response::HTTP_NOT_FOUND, 'File not found');
+
         // Generate visitor ID if guest
         $visitorId =  session()->get('visitor_id');
         LinkStatistic::create([
-            'link_id' => $link->id,
+            'link_id' => $media->model_id,
             'action' => 'view',
             'ip_address' => request()->ip(),
             'visitor_id' => $visitorId,
         ]);
+        // Redirect to the file URL
+        return redirect($media->getFullUrl());
     }
 
     public function render()

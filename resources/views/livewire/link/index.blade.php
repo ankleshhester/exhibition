@@ -93,6 +93,11 @@
                                     </a>
                                 @endforeach --}}
                                 @foreach($link->file as $key => $entry)
+                                    <a class="link-light-blue" href="#" wire:click.prevent="trackView({{ $entry['id']}})">
+                                        <i class="far fa-eye"></i> View File
+                                    </a>
+                                @endforeach
+                                @foreach($link->file as $key => $entry)
                                     <a class="link-light-blue" href="#" wire:click.prevent="download({{ $entry['id']  }})">
                                         <i class="far fa-file">
                                         </i>

@@ -16,9 +16,9 @@ return new class extends Migration
             $table->foreignId('link_id')->constrained()->onDelete('cascade');
             $table->enum('action', ['view', 'download']);
             $table->ipAddress('ip_address')->nullable();
-            $table->foreignId('visitor_id')->nullable()->constrained('users')->nullOnDelete();
+            $table->foreignId('visitor_id')->nullable()->constrained('visitors')->nullOnDelete();
             $table->timestamps();
-        });        
+        });
     }
 
     /**
