@@ -162,5 +162,15 @@
 @this[e.callback](...e.argv)
 })
     </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.link-light-blue').forEach(link => {
+            link.addEventListener('touchstart', function () {
+                this.click();
+            });
+        });
+    });
+</script>
 @endpush
 
