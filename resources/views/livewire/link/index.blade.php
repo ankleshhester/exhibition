@@ -93,7 +93,7 @@
                                     </a>
                                 @endforeach --}}
                                 @foreach($link->file as $key => $entry)
-                                    <a class="link-light-blue" href="#" wire:click="download({{ $entry['id']  }})">
+                                    <a class="link-light-blue" href="#" wire:click.prevent="download({{ $entry['id']  }})">
                                         <i class="far fa-file">
                                         </i>
                                         Download
